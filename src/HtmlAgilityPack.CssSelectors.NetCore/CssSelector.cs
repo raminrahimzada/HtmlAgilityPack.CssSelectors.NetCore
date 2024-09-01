@@ -6,22 +6,20 @@ using HtmlAgilityPack.CssSelectors.NetCore.Selectors;
 namespace HtmlAgilityPack.CssSelectors.NetCore;
 public abstract class CssSelector
 {
-    #region Constructor
     protected CssSelector()
     {
         SubSelectors = [];
     }
-    #endregion
-    #region Properties
+
     private static readonly CssSelector[] Selectors = FindSelectors();
     public abstract string Token { get; }
     protected virtual bool IsSubSelector => false;
     public virtual bool AllowTraverse => true;
     public IList<CssSelector> SubSelectors { get; set; }
     public string Selector { get; set; }
-    #endregion
-    #region Methods
+    
     protected internal abstract IEnumerable<HtmlNode> FilterCore(IEnumerable<HtmlNode> currentNodes);
+
     public IEnumerable<HtmlNode> Filter(IEnumerable<HtmlNode> currentNodes)
     {
         var nodes = currentNodes;
@@ -66,5 +64,4 @@ public abstract class CssSelector
         var rt = types.Select(Activator.CreateInstance).Cast<CssSelector>().ToArray();
         return rt;
     }
-    #endregion
 }

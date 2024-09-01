@@ -22,8 +22,8 @@ public static partial class HapCssExtensionMethods
     }
     public static IList<HtmlNode> QuerySelectorAll(this IEnumerable<HtmlNode> nodes, string cssSelector)
     {
-        if (cssSelector == null)
-            throw new ArgumentNullException(nameof(cssSelector));
+        ArgumentNullException.ThrowIfNull(cssSelector);
+        
         if (cssSelector.Contains(','))
         {
             var combinedSelectors = cssSelector.Split(',');
