@@ -1,11 +1,9 @@
-﻿namespace HtmlAgilityPack.CssSelectors.NetCore.PseudoClassSelectors
+﻿namespace HtmlAgilityPack.CssSelectors.NetCore.PseudoClassSelectors;
+[PseudoClassName("first-child")]
+internal class FirstChildPseudoClass : PseudoClass
 {
-    [PseudoClassName("first-child")]
-    internal class FirstChildPseudoClass : PseudoClass
+    protected override bool CheckNode(HtmlNode node, string parameter)
     {
-        protected override bool CheckNode(HtmlNode node, string parameter)
-        {
-            return node.GetIndexOnParent() == 0;
-        }
+        return node.GetIndexOnParent() == 0;
     }
 }

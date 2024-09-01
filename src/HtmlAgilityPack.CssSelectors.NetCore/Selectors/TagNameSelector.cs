@@ -1,19 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
-
-namespace HtmlAgilityPack.CssSelectors.NetCore.Selectors
+namespace HtmlAgilityPack.CssSelectors.NetCore.Selectors;
+internal class TagNameSelector : CssSelector
 {
-    internal class TagNameSelector : CssSelector
+    public override string Token => string.Empty;
+    protected internal override IEnumerable<HtmlNode> FilterCore(IEnumerable<HtmlNode> currentNodes)
     {
-        public override string Token => string.Empty;
-
-        protected internal override IEnumerable<HtmlNode> FilterCore(IEnumerable<HtmlNode> currentNodes)
+        foreach (var node in currentNodes)
         {
-            foreach (var node in currentNodes)
-            {
-                if (node.Name.Equals(Selector, StringComparison.OrdinalIgnoreCase))
-                    yield return node;
-            }
+            if (node.Name.Equals(Selector, StringComparison.OrdinalIgnoreCase))
+                yield return node;
         }
     }
 }
