@@ -7,8 +7,8 @@ internal class NotPseudoClass : PseudoClass
     {
         var selectors = CssSelector.Parse(parameter);
         var nodes = new[] { node };
-        foreach (var selector in selectors)
-            if (selector.FilterCore(nodes).Count() == 1)
+        foreach(var selector in selectors)
+            if(selector.FilterCore(nodes).Count() == 1)
                 return false;
         return true;
     }

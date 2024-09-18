@@ -17,16 +17,16 @@ public abstract class CssSelector
     public virtual bool AllowTraverse => true;
     public IList<CssSelector> SubSelectors { get; set; }
     public string Selector { get; set; }
-    
+
     protected internal abstract IEnumerable<HtmlNode> FilterCore(IEnumerable<HtmlNode> currentNodes);
 
     public IEnumerable<HtmlNode> Filter(IEnumerable<HtmlNode> currentNodes)
     {
         var nodes = currentNodes;
         IEnumerable<HtmlNode> rt = FilterCore(nodes).Distinct();
-        if (SubSelectors.Count == 0)
+        if(SubSelectors.Count == 0)
             return rt;
-        foreach (var selector in SubSelectors)
+        foreach(var selector in SubSelectors)
             rt = selector.FilterCore(rt);
         return rt;
     }
