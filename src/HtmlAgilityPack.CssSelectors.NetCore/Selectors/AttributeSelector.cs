@@ -8,9 +8,9 @@ internal class AttributeSelector : CssSelector
     protected internal override IEnumerable<HtmlNode> FilterCore(IEnumerable<HtmlNode> currentNodes)
     {
         var filter = GetFilter();
-        foreach(var node in currentNodes)
+        foreach (var node in currentNodes)
         {
-            if(filter(node))
+            if (filter(node))
                 yield return node;
         }
     }
@@ -18,23 +18,23 @@ internal class AttributeSelector : CssSelector
     {
         string filter = Selector.Trim('[', ']');
         int idx = filter.IndexOf('=');
-        if(idx == 0)
+        if (idx == 0)
             throw new InvalidOperationException($"Invalid selector use for attribute {Selector}.");
-        if(idx < 0)
+        if (idx < 0)
             return node => node.Attributes.Contains(filter);
         var operation = GetOperation(filter[idx - 1]);
-        if(!char.IsLetterOrDigit(filter[idx - 1]))
+        if (!char.IsLetterOrDigit(filter[idx - 1]))
             filter = filter.Remove(idx - 1, 1);
         string[] values = filter.Split(['='], 2);
         filter = values[0];
         string value = values[1];
-        if(value[0] == value[value.Length - 1] && (value[0] == '"' || value[0] == '\''))
+        if (value[0] == value[value.Length - 1] && (value[0] == '"' || value[0] == '\''))
             value = value.Substring(1, value.Length - 2);
         return node => node.Attributes.Contains(filter) && operation(node.Attributes[filter].Value, value);
     }
     private Func<string, string, bool> GetOperation(char value)
     {
-        if(char.IsLetterOrDigit(value))
+        if (char.IsLetterOrDigit(value))
             return (attr, v) => attr == v;
         return value switch
         {
@@ -45,16 +45,16 @@ internal class AttributeSelector : CssSelector
             '|' => (attr, v) =>
                             {
                                 var isMatch = false;
-                                if(attr == v)
+                                if (attr == v)
                                 {
                                     isMatch = true;
                                 }
-                                else if(attr.Length > v.Length)
+                                else if (attr.Length > v.Length)
                                 {
                                     var firstValue = attr
                                         .Split([' '], StringSplitOptions.None)
                                         .FirstOrDefault();
-                                    if(firstValue?.StartsWith(v) ?? false)
+                                    if (firstValue?.StartsWith(v) ?? false)
                                     {
                                         isMatch = firstValue.Length > v.Length && firstValue[v.Length] == '-';
                                     }

@@ -7,11 +7,11 @@ internal class NthChildPseudoClass : PseudoClass
     {
         var indexOnParent = node.GetIndexOnParent();
 
-        if(parameter.Equals("odd", StringComparison.OrdinalIgnoreCase))
+        if (parameter.Equals("odd", StringComparison.OrdinalIgnoreCase))
         {
             return (indexOnParent + 1) % 2 != 0;
         }
-        if(parameter.Equals("even", StringComparison.OrdinalIgnoreCase))
+        if (parameter.Equals("even", StringComparison.OrdinalIgnoreCase))
         {
             return (indexOnParent + 1) % 2 == 0;
         }

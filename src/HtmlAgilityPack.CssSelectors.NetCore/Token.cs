@@ -22,11 +22,11 @@ public sealed class Token
         bool isPrefix = true;
         bool isOpeningBracket = false;
         char closeBracket = '\0';
-        for(int i = 0; i < token.Length; i++)
+        for (int i = 0; i < token.Length; i++)
         {
-            if(isOpeningBracket)
+            if (isOpeningBracket)
             {
-                if(token[i] == closeBracket)
+                if (token[i] == closeBracket)
                 {
                     isOpeningBracket = false;
                     isPrefix = true;
@@ -35,31 +35,31 @@ public sealed class Token
                 }
                 continue;
             }
-            if(token[i] == '(')
+            if (token[i] == '(')
             {
                 closeBracket = ')';
                 isOpeningBracket = true;
             }
-            else if(token[i] == '[')
+            else if (token[i] == '[')
             {
                 closeBracket = ']';
-                if(i != start)
+                if (i != start)
                 {
                     rt.Add(token.Substring(start, i - start));
                     start = i;
                 }
                 isOpeningBracket = true;
             }
-            else if(i == token.Length - 1)
+            else if (i == token.Length - 1)
             {
                 rt.Add(token.Substring(start, i - start + 1));
             }
-            else if(!isNameToken(token[i]) && !isPrefix)
+            else if (!isNameToken(token[i]) && !isPrefix)
             {
                 rt.Add(token.Substring(start, i - start));
                 start = i;
             }
-            else if(isNameToken(token[i]))
+            else if (isNameToken(token[i]))
                 isPrefix = false;
         }
         return rt;
