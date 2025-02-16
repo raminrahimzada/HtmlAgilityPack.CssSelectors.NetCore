@@ -23,7 +23,7 @@ public abstract class CssSelector
     public IEnumerable<HtmlNode> Filter(IEnumerable<HtmlNode> currentNodes)
     {
         var nodes = currentNodes;
-        IEnumerable<HtmlNode> rt = FilterCore(nodes).Distinct();
+        var rt = FilterCore(nodes).Distinct();
         if (SubSelectors.Count == 0)
             return rt;
         foreach (var selector in SubSelectors)
@@ -48,7 +48,7 @@ public abstract class CssSelector
 
         var selectorType = selector.GetType();
         var rt = (CssSelector)Activator.CreateInstance(selectorType);
-        string filter = token.Filter[selector.Token.Length..];
+        var filter = token.Filter[selector.Token.Length..];
         rt.SubSelectors = token.SubTokens.Select(ParseSelector).ToList();
         rt.Selector = filter;
         return rt;

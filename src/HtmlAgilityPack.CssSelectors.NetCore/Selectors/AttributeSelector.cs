@@ -16,8 +16,8 @@ internal class AttributeSelector : CssSelector
     }
     private Func<HtmlNode, bool> GetFilter()
     {
-        string filter = Selector.Trim('[', ']');
-        int idx = filter.IndexOf('=');
+        var filter = Selector.Trim('[', ']');
+        var idx = filter.IndexOf('=');
         if (idx == 0)
             throw new InvalidOperationException($"Invalid selector use for attribute {Selector}.");
         if (idx < 0)
@@ -25,9 +25,9 @@ internal class AttributeSelector : CssSelector
         var operation = GetOperation(filter[idx - 1]);
         if (!char.IsLetterOrDigit(filter[idx - 1]))
             filter = filter.Remove(idx - 1, 1);
-        string[] values = filter.Split(['='], 2);
+        var values = filter.Split(['='], 2);
         filter = values[0];
-        string value = values[1];
+        var value = values[1];
         if (value[0] == value[value.Length - 1] && (value[0] == '"' || value[0] == '\''))
             value = value.Substring(1, value.Length - 2);
         return node => node.Attributes.Contains(filter) && operation(node.Attributes[filter].Value, value);

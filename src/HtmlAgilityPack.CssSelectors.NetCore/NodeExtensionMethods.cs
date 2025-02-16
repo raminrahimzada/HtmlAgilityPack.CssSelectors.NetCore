@@ -17,7 +17,7 @@ public static partial class HapCssExtensionMethods
     }
     public static int GetIndexOnParent(this HtmlNode node)
     {
-        int idx = 0;
+        var idx = 0;
         foreach (var n in node.ParentNode.GetChildElements())
         {
             if (n == node)
@@ -28,7 +28,7 @@ public static partial class HapCssExtensionMethods
     }
     public static int GetIndexOnParent(this HtmlNode node, string tagName)
     {
-        int idx = 0;
+        var idx = 0;
         foreach (var n in node.ParentNode.GetChildElements())
         {
             if (!string.Equals(tagName, n.Name, StringComparison.OrdinalIgnoreCase))

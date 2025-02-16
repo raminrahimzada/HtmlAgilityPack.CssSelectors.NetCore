@@ -14,7 +14,7 @@ public abstract class PseudoClass
 
     public static PseudoClass GetPseudoClass(string pseudoClass)
     {
-        if (!Classes.TryGetValue(pseudoClass, out PseudoClass value))
+        if (!Classes.TryGetValue(pseudoClass, out var value))
             throw new NotSupportedException($"Pseudo classe {pseudoClass} not supported.");
         return value;
     }

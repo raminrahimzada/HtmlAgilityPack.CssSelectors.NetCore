@@ -8,10 +8,10 @@ public static class Tokenizer
         using var reader = new System.IO.StringReader(cssFilter);
         while (true)
         {
-            int v = reader.Read();
+            var v = reader.Read();
             if (v < 0)
                 yield break;
-            char c = (char)v;
+            var c = (char)v;
             if (c == '>')
             {
                 yield return new Token(">");
@@ -19,7 +19,7 @@ public static class Tokenizer
             }
             if (c == ' ' || c == '\t')
                 continue;
-            string word = c + ReadWord(reader);
+            var word = c + ReadWord(reader);
             yield return new Token(word);
         }
     }
@@ -28,10 +28,10 @@ public static class Tokenizer
         var sb = new StringBuilder();
         while (true)
         {
-            int v = reader.Read();
+            var v = reader.Read();
             if (v < 0)
                 break;
-            char c = (char)v;
+            var c = (char)v;
             if (c == ' ' || c == '\t' || c == '>')
                 break;
             sb.Append(c);

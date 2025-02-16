@@ -36,8 +36,8 @@ public static partial class HapCssExtensionMethods
         }
         cssSelector = cssSelector.Trim();
         var selectors = CssSelector.Parse(cssSelector);
-        bool allowTraverse = true;
-        for (int i = 0; i < selectors.Count; i++)
+        var allowTraverse = true;
+        for (var i = 0; i < selectors.Count; i++)
         {
             var selector = selectors[i];
             if (allowTraverse && selector.AllowTraverse)
