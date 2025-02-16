@@ -32,7 +32,7 @@ public abstract class CssSelector
     }
     public virtual string GetSelectorParameter(string selector)
     {
-        return selector.Substring(Token.Length);
+        return selector[Token.Length..];
     }
     public static IList<CssSelector> Parse(string cssSelector)
     {
@@ -48,7 +48,7 @@ public abstract class CssSelector
 
         var selectorType = selector.GetType();
         var rt = (CssSelector)Activator.CreateInstance(selectorType);
-        string filter = token.Filter.Substring(selector.Token.Length);
+        string filter = token.Filter[selector.Token.Length..];
         rt.SubSelectors = token.SubTokens.Select(ParseSelector).ToList();
         rt.Selector = filter;
         return rt;
