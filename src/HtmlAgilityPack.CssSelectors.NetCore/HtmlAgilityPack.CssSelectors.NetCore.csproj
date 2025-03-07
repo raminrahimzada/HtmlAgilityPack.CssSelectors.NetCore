@@ -12,6 +12,7 @@
     <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
     <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
     <Version>1.2.1</Version>
+    <Configurations>Debug;Release;ReleaseExtra</Configurations>
   </PropertyGroup>
   <ItemGroup>
 	  <PackageReference Include="HtmlAgilityPack" Version="1.11.72" />
