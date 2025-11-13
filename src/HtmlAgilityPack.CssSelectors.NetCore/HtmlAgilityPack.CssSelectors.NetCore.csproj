@@ -15,6 +15,6 @@
     <Configurations>Debug;Release;ReleaseExtra</Configurations>
   </PropertyGroup>
   <ItemGroup>
-	  <PackageReference Include="HtmlAgilityPack" Version="1.11.72" />
+	  <PackageReference Include="HtmlAgilityPack" Version="1.12.4" />
   </ItemGroup>
 </Project>
